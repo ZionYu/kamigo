@@ -49,7 +49,7 @@ class KamigoController < ApplicationController
   def webhook
 
     # 設定回覆文字
-    reply_text = keyword_reply(receive_text)
+    reply_text = keyword_reply(received_text)
 
     # 傳送訊息到 line
     response = reply_to_line(reply_text)
@@ -69,7 +69,7 @@ class KamigoController < ApplicationController
   end
 
   # 傳送訊息到 line
-  def reply_to_line(message)
+  def reply_to_line(reply_text)
     return nil if reply_text.nil?
 
     # 取得reply token
