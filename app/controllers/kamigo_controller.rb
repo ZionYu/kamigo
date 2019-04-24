@@ -1,3 +1,4 @@
+require 'line/bot'
 class KamigoController < ApplicationController
   protect_from_forgery with: :null_session
 
@@ -46,6 +47,25 @@ class KamigoController < ApplicationController
   end
 
   def webhook
+    # Line Bot API 物件初始化
+    client = Line::Bot::Client.new{|config|
+      config.channel_secret = '57d1d732a9dd3f02aeee87b3c882a481'
+      config.channel_token = 'CvaRq33hjRaTSFurt8t24NPakKRZ7oVLs04nhOTeZydD3CCMpZtTAHcKPEgBoAtnHwt5QuO6i8oxKh6xXwvli+RqOGILUd4qY2AcOLgzbyPb5H7HZdrjn6pAQdYlFcaozRMWUtX9yFoDTXLM6CgEfAdB04t89/1O/w1cDnyilFU='
+    }
+    # 取得 reply token
+    reply_token = params['events'][0]['replyToken']
+
+    p "======這裡是 reply_token ======"
+    p reply_token 
+    p "============"
+    
+    # 設定回覆訊息
+    message = {
+      type: 'text',
+      text: '旺～旺～'
+    }
+    # 傳送訊息
+    response = client.reply_message(reply_token, message)
     head :ok
   end
 
