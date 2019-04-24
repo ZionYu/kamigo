@@ -87,7 +87,7 @@ class KamigoController < ApplicationController
   end
 
   # 取得對方說的話
-  def receive_text
+  def received_text
     params['events'][0]['message']['text']
     message['text'] unless message.nil?
   end
