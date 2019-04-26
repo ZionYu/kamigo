@@ -128,12 +128,12 @@ class KamigoController < ApplicationController
   end
 
   def save_to_received(channel_id, received_text)
-    return if received_text.nil
+    return if received_text.nil?
     Received.create(channel_id: channel_id, text: received_text)  
   end
 
   def save_to_reply(channel_id, reply_text)
-    return if reply_text.nil
+    return if reply_text.nil?
     Reply.create(channel_id: channel_id, text: reply_text)
   end
 
