@@ -47,6 +47,9 @@ class KamigoController < ApplicationController
   end
 
   def webhook
+    # 記錄頻道(find_or_create_by避免相同的資料重複被存導致同一個人收到多次)
+    Channel.find_or_create_by(channel_id: channel_id)
+
     # 學說話
     reply_text = learn(channel_id, received_text)
 
